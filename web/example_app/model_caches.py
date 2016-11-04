@@ -1,9 +1,13 @@
 from .models import Album
+from ..model_cache_store import BaseCache
 
-from ..model_cache_store import ModelCache
+from example_app.serializers import AlbumSerializer
 
 
-class AlbumCache(ModelCache):
+class AlbumCache(BaseCache):
+    model_serializer = AlbumSerializer
     model = Album
     queryset = Album.objects.all()
-    cache_key = 'albums_v1'
+    version = '1.0'
+
+post_save.connect(AlbumCache.model_post_save_signal, sender=AlbumCache.model)

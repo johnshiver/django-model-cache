@@ -1,1 +1,1 @@
-from .base_model_cache import BaseCache, ModelCache
+from .base_model_cache import BaseCache, AlbumCache
